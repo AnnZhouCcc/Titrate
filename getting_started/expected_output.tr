@@ -1,0 +1,19 @@
+Waf: Entering directory `/u/az6922/Titrate/ns-3.34/build'
+RTT buckets: 
+targetBW: 12500000
+configurationsfilename = simple_appconf
+appSettings of sink 0: 1
+alpha: 
+srcBw: 200, 
+midBw: 100, 
+midDelay: 1, 
+adaptiveIncreaseParameter: 2, 
+adaptiveDecreaseParameter: 4, 
+monitorLongMs=500, dropRateThreshold=1
+Finish setting up input ports
+Finish setting up output ports
+smallest RTT on device in ms = 0
+startRangeMs = 1000
+port=1000
+appIndex=0, flowIndex=0, flowId=0, appStart=0, randomStartMs=131.538, flowPriority=1
+Finish setting up apps

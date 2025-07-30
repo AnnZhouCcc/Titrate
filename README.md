@@ -31,12 +31,12 @@ This launches one simple experiment, which should finish in about two minutes. Y
 We will show how to reproduce results for the following figures in the paper and list the corresponding directories. Note that these experiments use 1Gbps links and take multiple days to finish. As such, I have also included the expected results that you will obtain if you really run the experiments for this long. My plotting scripts run based on these numbers. If you actually run for multiple days and want to plot based on your numbers, you can simply change `TODO: add` and plot accordingly.
 | Figure | Directory | Subsection |
 |----------|----------|----------|
-| Figures 8 & 9   | thptlat/   | Throughput & Latency  |
-| Figure 10   | burst/   | Burst |
-| Figure 11   | burst/   | Burst |
-| Figure 12   | burst/   | Burst |
-| Figure 13   | burst/   | Burst |
-| Figure 14   | burst/   | Burst |
+| Figures 8 & 9   | thptlat/   | Throughput & Latency (#throughput--latency)  |
+| Figure 10   | burst/   | Burst (#burst) |
+| Figure 11   | multirtt/   | Multiple RTTs on Multiple Ports (#multiple-rtts-on-multiple-ports) |
+| Figure 12   | multiburst/   | Multiple Bursts on Multiple Ports (#multiple-bursts-on-multiple-ports) |
+| Figures 13a & 13b   | deltabw/   | Delta Bandwidth (#delta-bandwidth) |
+| Figures 14a & 14b   | deltatraffic/   | Delta Traffic (#delta-traffic) |
 
 
 ### Throughput & Latency
@@ -46,6 +46,7 @@ This corresponds to Figure 8 & 9 in the paper.
 TODO: add how many experiments in total
 
 Run experiments -- may need at least TODO:add number GB space to store data, take days, PIE takes 10+ days:
+On 128-core machines, the quickrun (simulates 2s instead of 200s) takes about 12 minutes to finish.
 ```
 cd ns-3.34/
 python3 ../run_ns3.py --conf ../detailed_ae/thptlat/run.conf 
@@ -64,7 +65,6 @@ cp expected_data_throughput.txt data_throughput.txt
 cp expected_data_latency.txt data_latency.txt
 ```
 
-
 Plot:
 ```
 python3 plot_fig8.py
@@ -74,6 +74,157 @@ The expected plots are `expected_fig8.pdf` and `expected_fig9.pdf`.
 
 
 ### Burst
+
+Run experiments:
+run on 128-core machine: 
+quickrun on 128-core machine: 
+```
+cd ns-3.34/
+python3 ../run_ns3.py --conf ../detailed_ae/burst/run.conf 
+python3 ../run_ns3.py --conf ../detailed_ae/burst/quickrun.conf 
+```
+
+Compile your data (if you didn't wait until experiments finish, do the next bulk instead)
+The expected data are in `expected_data.txt`
+```
+cd detailed_ae/burst
+python3 process_data.py
+```
+```
+cp expected_data.txt data.txt
+```
+
+Plot:
+```
+python3 plot_fig10.py
+```
+The expected plots are `expected_fig10.pdf`.
+
+
+### Multiple RTTs on Multiple Ports
+
+Run experiments:
+run on 128-core machine: 
+quickrun on 128-core machine: 
+```
+cd ns-3.34/
+python3 ../run_ns3.py --conf ../detailed_ae/multirtt/run.conf 
+python3 ../run_ns3.py --conf ../detailed_ae/multirtt/quickrun.conf 
+```
+
+Compile your data (if you didn't wait until experiments finish, do the next bulk instead)
+The expected data are in `expected_data_throughput_long.txt`,`expected_data_latency_long.txt`,`expected_data_throughput_short.txt`,`expected_data_latency_short.txt`,
+```
+cd detailed_ae/burst
+python3 process_data.py
+```
+```
+cp expected_data_throughput_long.txt data_throughput_long.txt
+cp expected_data_latency_long.txt data_latency_long.txt
+cp expected_data_throughput_short.txt data_throughput_short.txt
+cp expected_data_latency_short.txt data_latency_short.txt
+```
+
+Plot:
+```
+python3 plot_fig11.py
+```
+The expected plots are `expected_fig11.pdf`.
+
+
+### Multiple Bursts on Multiple Ports
+
+Run experiments:
+run on 128-core machine: 
+quickrun on 128-core machine: 15 minutes
+```
+cd ns-3.34/
+python3 ../run_ns3.py --conf ../detailed_ae/multiburst/run.conf 
+python3 ../run_ns3.py --conf ../detailed_ae/multiburst/quickrun.conf 
+```
+
+Compile your data (if you didn't wait until experiments finish, do the next bulk instead)
+The expected data are in `expected_data_throughput.txt`, `expected_data_latency.txt`, `expected_data_ndrop.txt`, `expected_data_bct.txt`.
+```
+cd detailed_ae/multiburst
+python3 process_data.py
+```
+```
+cp expected_data_throughput.txt data_throughput.txt
+cp expected_data_latency.txt data_latency.txt
+cp expected_data_ndrop.txt data_ndrop.txt
+cp expected_data_bct.txt data_bct.txt
+```
+
+Plot:
+```
+python3 plot_fig12.py
+```
+The expected plots are `expected_fig12.pdf`.
+
+
+### Delta Bandwidth
+
+Run experiments:
+run on 128-core machine: 
+quickrun on 128-core machine:
+```
+cd ns-3.34/
+python3 ../run_ns3.py --conf ../detailed_ae/deltabw/run.conf 
+python3 ../run_ns3.py --conf ../detailed_ae/deltabw/quickrun.conf 
+```
+
+Compile your data (if you didn't wait until experiments finish, do the next bulk instead)
+The expected data are in `expected_data_timeseries.txt`,`expected_data_throughput.txt`, `expected_data_latency.txt`.
+```
+cd detailed_ae/multiburst
+python3 process_data.py
+```
+```
+cp expected_data_throughput.txt data_throughput.txt
+cp expected_data_latency.txt data_latency.txt
+cp expected_data_timeseries.txt data_timeseries.txt
+```
+
+Plot:
+```
+python3 plot_fig13a.py
+python3 plot_fig13b.py
+```
+The expected plots are `expected_fig13a.pdf`, `expected_fig13b.pdf`.
+
+
+
+### Delta Traffic
+
+Run experiments:
+run on 128-core machine: 
+quickrun on 128-core machine:
+```
+cd ns-3.34/
+python3 ../run_ns3.py --conf ../detailed_ae/deltabw/run.conf 
+python3 ../run_ns3.py --conf ../detailed_ae/deltabw/quickrun.conf 
+```
+
+Compile your data (if you didn't wait until experiments finish, do the next bulk instead)
+The expected data are in `expected_data_timeseries.txt`,`expected_data_throughput.txt`, `expected_data_latency.txt`.
+```
+cd detailed_ae/multiburst
+python3 process_data.py
+```
+```
+cp expected_data_throughput.txt data_throughput.txt
+cp expected_data_latency.txt data_latency.txt
+cp expected_data_timeseries.txt data_timeseries.txt
+```
+
+Plot:
+```
+python3 plot_fig13a.py
+python3 plot_fig13b.py
+```
+The expected plots are `expected_fig13a.pdf`, `expected_fig13b.pdf`.
+
 
 
 ## Acknowledgements
