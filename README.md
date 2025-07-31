@@ -2,6 +2,8 @@
 
 This repository contains the source code and instructions for artifact evaluation for our NSDI'26 paper Controlling Arbitrary Internet Queues with Titrate. The following codes are run with `g++ 11.4.0` and `Python 3.10.12`.
 
+We are submitting this artifact for all three badges: Artifact Available, Artifact Functional, and Results Reproduced.
+
 
 
 
@@ -44,7 +46,12 @@ There are six main experiments that showcase the key results and major claims of
 | Figures 13a & 13b   | deltabw/   | [Varying Bandwidth](#varying-bandwidth) |
 | Figures 14a & 14b   | deltatraffic/   | [Varying Traffic](#varying-traffic) |
 
-In many cases, a single experiment runs for 5+ days and takes up 20+GB of memory. A single experiment can only be run on one core and parallism can only happen when running multiple experiments. As such, we will also provide a `Quick Run` option, where it runs a shorter version of the experiments to make sure experiments are functional and continues the figure plotting with data files provided to make sure results are correct.
+Quick run: In many cases, a single experiment runs for 5+ days and takes up 20+GB of memory. A single experiment can only be run on one core and parallism only happens across multiple experiments. As such, we will also provide a `Quick Run` option, where it runs a shorter version of the experiments to make sure experiments are functional and continues the figure plotting with data files provided to make sure results are correct.
+
+Figures not included: We have excluded some figures from the paper that we deem not key to illustrating our claims. We will list the figures and brief explanations below.
+- Figures 1 & 2: Showing examples of queue dynamics.
+- Figure 3: Illustrating that CoDel has its shortcomings, providing explanations for the claim in [Throughput & Queuing Latency](#throughput--queuing-latency).
+- Figures 15b & 15c: Confirming a subset of the claim in [Throughput & Queuing Latency](#throughput--queuing-latency) in a testbed.
 
 
 
@@ -105,7 +112,7 @@ python3 plot_fig9.py
 
 ### Burst Completion Time
 
-Claim: Titrate achieves significantly lower burst completion times compared to CoDel, Static and Titrate without EQlen.
+Claim: Titrate achieves lower burst completion times compared to CoDel, Static and Titrate without EQlen.
 
 Success metric: Generate `fig10.pdf`, and it should match `expected_fig10.pdf`.
 
@@ -226,7 +233,7 @@ python3 plot_fig12.py
 
 #### Quick Run
 
-Run experiments (240 in total; take about 15 minutes on a 128-core machine):
+Run experiments (8 in total; take about 15 minutes on a 128-core machine):
 ```
 cd ns-3.34/
 python3 ../run_ns3.py --conf ../detailed_ae/multiburst/quickrun.conf 

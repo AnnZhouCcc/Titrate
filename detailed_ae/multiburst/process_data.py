@@ -259,22 +259,22 @@ def convert_list_to_str(mylist):
         mystr+=f"{x} "
     return mystr
 
-with open(f'{homedir}Titrate/detailed_ae/multiburst/data_throughput.txt', 'w') as f:
+with open('data_throughput.txt', 'w') as f:
     for scheme in schemearr:
         for totalbuffer in totalbufferarr:
             key = f"{totalbuffer}_{scheme}"
             f.write(f"{totalbuffer} {scheme} {(thptlist[key])}\n")
-with open(f'{homedir}Titrate/detailed_ae/multiburst/data_latency.txt', 'w') as f:
+with open('data_latency.txt', 'w') as f:
     for scheme in schemearr:
         for totalbuffer in totalbufferarr:
             key = f"{totalbuffer}_{scheme}"
             f.write(f"{totalbuffer} {scheme} {(qlenlist[key])}\n")
-with open(f'{homedir}Titrate/detailed_ae/multiburst/data_ndrop.txt', 'w') as f:
+with open('data_ndrop.txt', 'w') as f:
     for scheme in schemearr:
         for totalbuffer in totalbufferarr:
             key = f"{totalbuffer}_{scheme}"
             f.write(f"{totalbuffer} {scheme} {(wwwtdroplist[key])}\n")
-with open(f'{homedir}Titrate/detailed_ae/multiburst/data_bct.txt', 'w') as f:
+with open('data_bct.txt', 'w') as f:
     for scheme in schemearr:
         for totalbuffer in totalbufferarr:
             key = f"{totalbuffer}_{scheme}"
