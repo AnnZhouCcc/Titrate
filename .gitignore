@@ -54,3 +54,4 @@ tmp.sh
 !detailed_ae/*/*.pdf
 !detailed_ae/*/*.txt
 !getting_started/expected_output.tr
+!requirements.txt

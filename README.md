@@ -1,6 +1,6 @@
 # Controlling Arbitrary Internet Queues with Titrate
 
-This repository contains the source code and instructions for artifact evaluation for our NSDI'26 paper Controlling Arbitrary Internet Queues with Titrate.
+This repository contains the source code and instructions for artifact evaluation for our NSDI'26 paper Controlling Arbitrary Internet Queues with Titrate. The following codes are run with `g++ 11.4.0` and `Python 3.10.12`.
 
 
 
@@ -15,6 +15,11 @@ cd ns-3.34
 ./waf distclean
 CXXFLAGS="-std=c++17" ./waf configure --build-profile=optimized --disable-examples --disable-tests --disable-python
 ./waf
+```
+
+Set up dependencies:
+```
+pip3 install -r requirements.txt
 ```
 
 Validate whether experiment runs:
