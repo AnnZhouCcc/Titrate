@@ -1,5 +1,5 @@
 /*
-* Ann Zhou, some changes copied from Vamsi or ns-3.35
+* Code reference from Vamsi Addanki
 */
 
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */

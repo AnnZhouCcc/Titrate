@@ -1,5 +1,5 @@
 /*
- * Ann Zhou, copied from:
+ * Code reference from Vamsi Addanki
  *
  * shared-memory.h
  *

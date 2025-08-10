@@ -1,6 +1,5 @@
 /*
-* Ann Zhou, copied this file entirely from Vamsi (I think). It looks like
-* this file is adapted from prio-queue-disc.h
+* Code reference from Vamsi Addanki & prio-queue-disc.h
 */
 
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
