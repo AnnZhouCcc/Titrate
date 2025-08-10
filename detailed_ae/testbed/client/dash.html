@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic DASH Video Player</title>
+    <script src="https://cdn.dashjs.org/latest/modern/umd/dash.all.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <video id="videoPlayer" controls width="640px" height="360px"></video>
+    </div>
+    <script>
+      (function () {
+        // See https://cdn.dashjs.org/latest/jsdoc/ for API documentation
+
+        window.playerReady = false;
+        window.dash_data = [];
+        window.rebuffer_events = [];
+
+        const url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
+        const player = dashjs.MediaPlayer().create();
+        const video = document.querySelector("#videoPlayer");
+        player.initialize(video, url, true);
+
+        player.on(dashjs.MediaPlayer.events.MANIFEST_LOADED, () => {
+          window.playerReady = true;
+        });
+
+        player.on(dashjs.MediaPlayer.events.BUFFER_EMPTY, () => {
+          window.rebuffer_events.push(["start", Date.now() / 1000]); // Convert to seconds
+        });
+
+        player.on(dashjs.MediaPlayer.events.BUFFER_LOADED, () => {
+          window.rebuffer_events.push(["end", Date.now() / 1000]); // Convert to seconds
+        });
+
+        player.on(dashjs.MediaPlayer.events.FRAGMENT_LOADING_COMPLETED, (e) => {
+          req_url = e.request.url;
+
+          // Skip audio fragments
+          if (req_url.endsWith(".m4a")) return;
+
+          const rep = player.getCurrentRepresentationForType("video");
+          const byterate = rep.bandwidth;
+          const quality = rep.absoluteIndex;
+          console.log(rep);
+          const bufferLevel = player.getBufferLength();
+
+          // Units: string, int, bits, seconds
+          const data = [req_url, quality, byterate * 8, bufferLevel];
+          window.dash_data.push(data);
+        });
+      })();
+    </script>
+  </body>
+</html>
